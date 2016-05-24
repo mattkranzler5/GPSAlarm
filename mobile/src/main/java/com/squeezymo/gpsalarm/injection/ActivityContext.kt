@@ -13,18 +13,16 @@ import javax.inject.Singleton
 @ActivityScope @Subcomponent(modules = arrayOf(ActivityContextModule::class))
 interface ActivityContextComponent {
     fun inject(fragment: BaseFragment)
-
-    //fun inject(adapter: BaseAdapter<out RecyclerView.ViewHolder>)
 }
 
 @Module
 class ActivityContextModule(val activity: MainActivity) {
-    /* @Provides @ForActivity
-    fun provideContext(): Context {
+    @Provides @ActivityScope @ForActivity
+    fun provideActivityContext(): Context {
         return activity;
-    }*/
+    }
 
-    @Provides
+    @Provides @ActivityScope
     fun provideMainActivityContext(): MainActivity {
         return activity;
     }

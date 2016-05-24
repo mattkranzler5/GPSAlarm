@@ -10,16 +10,10 @@ import javax.inject.Inject
 
 class GpsAlarmApplication : SugarApp() {
 
-    companion object {
-        @JvmStatic lateinit var graph: AppContextComponent
-    }
-
-    @Inject lateinit var refWatcher: RefWatcher
+    lateinit var graph: AppContextComponent
 
     override fun onCreate() {
         super.onCreate()
-
-        refWatcher = LeakCanary.install(this)
         graph = DaggerAppContextComponent.builder().appContextModule(AppContextModule(this)).build()
     }
 

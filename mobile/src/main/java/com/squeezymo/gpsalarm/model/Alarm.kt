@@ -5,19 +5,15 @@ import com.orm.SugarRecord
 import com.squeezymo.gpsalarm.GpsAlarmApplication
 import com.squeezymo.gpsalarm.R
 import com.squeezymo.gpsalarm.injection.ForApplication
+import java.io.Serializable
 import javax.inject.Inject
 
-class Alarm(): SugarRecord() {
-    //@Inject @ForApplication lateinit var context: Context
+class Alarm @Inject constructor(@ForApplication var context: Context): SugarRecord(), Serializable {
 
     lateinit var title: String
 
     init {
-        //GpsAlarmApplication.graph.inject(this)
-        title = "" //context.getString(R.string.default_alarm_title)
+        title = context.getString(R.string.default_alarm_title)
     }
 
-    constructor(title: String) : this() {
-        this.title = title
-    }
 }

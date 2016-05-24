@@ -11,10 +11,11 @@ import com.squeezymo.gpsalarm.helper.fab
 import com.squeezymo.gpsalarm.helper.recyclerView
 import com.squeezymo.gpsalarm.ui.fragment.adapter.AlarmsListAdapter
 import org.jetbrains.anko.*
+import org.jetbrains.anko.support.v4.UI
 
 class AlarmsListFragment : BaseFragment() {
 
-    lateinit var list: RecyclerView
+    private lateinit var list: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return UI {
@@ -22,7 +23,7 @@ class AlarmsListFragment : BaseFragment() {
                 list = recyclerView()
 
                 fab() {
-                    onClick {/* activity.createNewAlarm()*/ }
+                    onClick { baseActivity.createNewAlarm() }
                 }.lparams(
                         height = wrapContent,
                         width = wrapContent,
@@ -35,6 +36,11 @@ class AlarmsListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list.adapter = AlarmsListAdapter()
+    }
+
+    override fun onRestoreFromBackstack() {
+        super.onRestoreFromBackstack()
+        list.adapter.notifyDataSetChanged()
     }
 
 }

@@ -1,35 +1,52 @@
 package com.squeezymo.gpsalarm.ui.fragment
 
-import android.app.Fragment
 import android.location.LocationManager
 import android.os.Bundle
+import android.support.annotation.CallSuper
+import android.support.v4.app.Fragment
 import com.squareup.leakcanary.RefWatcher
 import com.squeezymo.gpsalarm.GpsAlarmApplication
-import com.squeezymo.gpsalarm.injection.ActivityScope
-import com.squeezymo.gpsalarm.injection.ForActivity
-import com.squeezymo.gpsalarm.injection.ForApplication
+import com.squeezymo.gpsalarm.injection.AppContextComponent
 import com.squeezymo.gpsalarm.ui.activity.MainActivity
+import org.jetbrains.anko.support.v4.toast
+
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
 
-    @Inject lateinit var activity1: MainActivity
-    //@Inject @field:[ForActivity] lateinit var activity1: MainActivity
-    //@Inject @field:[ForApplication] lateinit var context1: GpsAlarmApplication
+    protected lateinit var appContextComponent: AppContextComponent
 
-    //@Inject lateinit var refWatcher: RefWatcher
-    //@Inject lateinit var locationManager: LocationManager
+    @Inject protected lateinit var baseActivity: MainActivity
+    @Inject protected lateinit var refWatcher: RefWatcher
+    @Inject protected lateinit var locationManager: LocationManager
+
+    private var restoredFromBackstack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //GpsAlarmApplication.graph.inject(this)
-        MainActivity.graph.inject(this)
+        (activity as MainActivity).graph.inject(this)
+        appContextComponent = (baseActivity.application as GpsAlarmApplication).graph
+
+        restoredFromBackstack = false
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (restoredFromBackstack) onRestoreFromBackstack()
+    }
+
+    @CallSuper
+    open fun onRestoreFromBackstack() { }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        restoredFromBackstack = true
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //refWatcher.watch(this)
+        refWatcher.watch(this)
     }
 
 }
