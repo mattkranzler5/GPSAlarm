@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.squeezymo.gpsalarm"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -35,9 +35,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Support
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
 
     // Kotlin & Anko
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -52,6 +52,10 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.2'
     compile 'com.google.dagger:dagger:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
+
+    // Google Maps and Places API
+    compile 'com.google.android.gms:play-services-maps:9.0.2'
+    compile 'com.google.android.gms:play-services-location:9.0.2'
 
     // LeakCanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'

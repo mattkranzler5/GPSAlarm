@@ -1,17 +1,19 @@
 package com.squeezymo.gpsalarm.ui.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.squeezymo.gpsalarm.helper.fab
 import com.squeezymo.gpsalarm.helper.recyclerView
 import com.squeezymo.gpsalarm.ui.fragment.adapter.AlarmsListAdapter
-import org.jetbrains.anko.*
+import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.onClick
 import org.jetbrains.anko.support.v4.UI
+import org.jetbrains.anko.wrapContent
 
 class AlarmsListFragment : BaseFragment() {
 
@@ -35,7 +37,9 @@ class AlarmsListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        list.adapter = AlarmsListAdapter()
+
+        list.layoutManager = LinearLayoutManager(baseActivity)
+        list.adapter = AlarmsListAdapter(baseActivity)
     }
 
     override fun onRestoreFromBackstack() {

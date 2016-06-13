@@ -2,5 +2,12 @@
     <string name="app_name">GPS Alarm</string>
 
     <string name="hint_alarm_title">Name</string>
+    <string name="hint_alarm_reminder">Reminder message</string>
+
     <string name="default_alarm_title">(No title)</string>
+    <string name="default_alarm_reminder">Location approached!</string>
+
+    <string name="item_pick_location">Pick location</string>
+
+    <string name="general_save">Save</string>
 </resources>

@@ -6,11 +6,9 @@ import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import com.squeezymo.gpsalarm.GpsAlarmApplication
 import com.squeezymo.gpsalarm.model.Alarm
-import com.squeezymo.gpsalarm.ui.fragment.BaseFragment
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @ApplicationScope @Component(modules = arrayOf(AppContextModule::class))
 interface AppContextComponent {

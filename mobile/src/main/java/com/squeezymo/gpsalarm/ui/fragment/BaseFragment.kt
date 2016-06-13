@@ -8,7 +8,6 @@ import com.squareup.leakcanary.RefWatcher
 import com.squeezymo.gpsalarm.GpsAlarmApplication
 import com.squeezymo.gpsalarm.injection.AppContextComponent
 import com.squeezymo.gpsalarm.ui.activity.MainActivity
-import org.jetbrains.anko.support.v4.toast
 
 import javax.inject.Inject
 
